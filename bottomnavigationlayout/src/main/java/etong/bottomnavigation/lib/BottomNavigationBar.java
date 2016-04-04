@@ -105,8 +105,20 @@ public class BottomNavigationBar extends LinearLayout {
             BottomBarTab tab = tabList.get(i);
             if (i == position) {
                 tab.setSelected(true);
+                tab.textView.setVisibility(VISIBLE);
+                tab.widthAnimator(tabDefaultWidth, tabSelectedWidth);
+                tab.textScaleAnimator(1);
+                tab.imageTranslationAnimator(imageDefaultTop, imageSelectedTop);
+                tab.animatorStart(animation_duration);
+
+                ripple(tab, tab.color);
             } else {
                 tab.setSelected(false);
+
+                tab.widthAnimator(tabSelectedWidth, tabDefaultWidth);
+                tab.textScaleAnimator(textDefaultScale);
+                tab.imageTranslationAnimator(imageSelectedTop, imageDefaultTop);
+                tab.animatorStart(animation_duration);
             }
         }
     }
